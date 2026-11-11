@@ -1,0 +1,14 @@
+*
+!/.gitignore
+!/.gitattributes
+!/LICENSE
+!/README.md
+!/RUNME.m
+!/setup.m
+!/src/
+!/src/**/
+!/src/**/*.m
+!/docs/
+!/docs/PERFORMANCE_METRICS_SPEC.md
+!/docs/DIAGNOSTIC_PLOT_VALIDATION.md
+!/docs/FLIGHT_RECONSTRUCTION_DESIGN.md
