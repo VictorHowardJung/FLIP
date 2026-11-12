@@ -83,4 +83,5 @@ logged state timeline. A plausible numeric range is not proof of correctness.
 Estimator flags, power warnings, or clipping events retain their logged
 meaning; FLIP does not automatically turn them into a causal diagnosis.
 
-[Metric definitions](PERFORMANCE_METRICS_SPEC.md) provide the associated calculation rules.
+[Metric definitions](PERFORMANCE_METRICS_SPEC.md) describe the associated
+calculation rules and units.

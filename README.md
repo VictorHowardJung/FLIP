@@ -63,11 +63,30 @@ direct input. Esc exits picking while retaining the selected times.
 Enter a label and choose **Add & analyze**. The status area shows calculation,
 plotting, FIG/PDF export, elapsed time, and completion. Controls are locked
 while processing and restored afterward. Window mode brings the completed
-interval's metric table forward; file-only mode reports its saved path.
+interval's annotated position graph forward; the metric table remains
+available. File-only mode reports the saved path.
 
 Saved interval definitions can be analyzed, split, merged, or deleted.
 Merging requires touching or overlapping ranges. Every interval uses the
 same analysis pipeline as the full flight, with time relative to log start.
+
+The default **Interval tracking (selected window)** mode displays RMSE, MAE,
+bias, maximum error, standard deviation, P95, and IAE/ISE/ITAE beside the
+position, velocity, attitude, and angular-rate curves. A marker identifies the
+largest observed absolute tracking error. The **Interval Tracking** tab and
+`interval_tracking_metrics.csv` retain the numerical results. This mode does
+not calculate rise time, settling time, or overshoot for an arbitrary interval.
+
+The final-20% mean error is labeled **Tail mean (r-y)**. It describes the
+observed tail and does not establish steady state. Missing references leave
+reference-dependent results unavailable.
+
+Choose **Detected command-step response** to review a recorded target step
+with sufficient initial and final observations. Only this mode evaluates
+10-90% rise time, +/-2% or +/-5% settling time, and overshoot. Unconfirmed
+values remain unavailable without suppressing interval tracking metrics.
+Graph landmarks, the **Control Response** tab, and
+`control_response_metrics.csv` retain the supported response results.
 
 ## Flight reconstruction
 
@@ -103,7 +122,8 @@ buildSimulinkUnrealReplayModel;
 
 ## Metric interpretation
 
-Errors use `actual - setpoint`. Reference values are synchronized to actual
+Tracking errors use `actual - setpoint`. Tail and steady-response errors
+use `setpoint - actual`. Reference values are synchronized to actual
 timestamps using linear interpolation for scalar/vector signals and
 shortest-path quaternion SLERP for orientation.
 
@@ -128,6 +148,7 @@ or assigning a composite flight score.
 | `src/reconstruction` | Replay preparation and Simulink/Unreal rendering |
 
 - [Metric definitions, units, and reference cases](docs/PERFORMANCE_METRICS_SPEC.md)
+- [Interval tracking and command-step metrics](docs/CONTROL_RESPONSE_METRICS.md)
 - [Diagnostic data and provenance](docs/DIAGNOSTIC_PLOT_VALIDATION.md)
 - [Flight reconstruction and coordinate conversion](docs/FLIGHT_RECONSTRUCTION_DESIGN.md)
 

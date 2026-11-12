@@ -23,6 +23,9 @@ function figureHandles = showFlightAnalysis(flightData, analysisResult, visibili
     for index = 1:numel(names)
         figureHandles.(names{index}) = plots.(names{index});
         figureHandles.(names{index}).Name = [plots.(names{index}).Name suffix];
+        if ismember(names{index}, {'position', 'velocity', 'attitude', 'rates'})
+            annotateIntervalControlResponse(plots.(names{index}), analysisResult, names{index});
+        end
     end
     options.ProgressFcn("plots", 14, 15, "Tracking errors");
     figureHandles.trackingErrors = plotTrackingErrors(analysisResult, char(visibility));
@@ -30,7 +33,11 @@ function figureHandles = showFlightAnalysis(flightData, analysisResult, visibili
     options.ProgressFcn("plots", 15, 15, "Tracking errors");
 
     if visibility == "on"
-        figure(figureHandles.performanceMetrics);
+        if isfield(analysisResult, 'controlResponse')
+            figure(figureHandles.position);
+        else
+            figure(figureHandles.performanceMetrics);
+        end
     end
     drawnow;
 end

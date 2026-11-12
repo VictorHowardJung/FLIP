@@ -188,7 +188,7 @@ Diagnostic quantities such as battery energy, clipping, estimator flags, and
 actuator outputs are described separately in
 [diagnostic data](DIAGNOSTIC_PLOT_VALIDATION.md).
 
-## Reference checks
+## Reference cases
 
 The following analytical cases define expected double-precision results.
 
@@ -203,11 +203,11 @@ The following analytical cases define expected double-precision results.
 | Quarter turn | Identity versus 90-degree yaw | Orientation error `pi/2` |
 | SLERP midpoint | Identity to 180-degree yaw | 90-degree yaw at midpoint |
 
-Other tests cover mismatched sizes, decreasing time, zero valid duration,
-nonfinite data, zero-norm quaternions, interval time-origin invariance,
-and missing reference overlap.
-
 ## Sources
+
+Interval command-step characteristics are defined separately in
+[control-response metrics](CONTROL_RESPONSE_METRICS.md). They supplement
+the tracking metrics without changing their calculation rules.
 
 - [PX4 Flight Review](https://docs.px4.io/main/en/log/flight_review)
 - [PX4 local-position setpoints](https://docs.px4.io/main/en/msg_docs/VehicleLocalPositionSetpoint)

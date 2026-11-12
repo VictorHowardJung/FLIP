@@ -1,7 +1,6 @@
 function flightData = loadULog(logFile)
 % Read PX4 topics, parameters, and signal data into the FLIP structure.
 
-    %% Validate input and environment
 
     if nargin < 1
 
@@ -14,7 +13,6 @@ function flightData = loadULog(logFile)
     validateULogEnvironment();
 
 
-    %% Read ULog
 
     try
 
@@ -29,12 +27,10 @@ function flightData = loadULog(logFile)
     end
 
 
-    %% Build ULog catalog
 
     catalog = buildULogCatalog(ulog);
 
 
-    %% Read required actual-state topics
 
     attitudeInstance = selectTopicInstance( ...
         ulog.AvailableTopics, 'vehicle_attitude');
@@ -50,7 +46,6 @@ function flightData = loadULog(logFile)
         ulog, 'vehicle_local_position', positionInstance);
 
 
-    %% Read optional actual-state and setpoint topics
 
     [ratesMessages, ratesInstance] = readOptionalTopic( ...
         ulog, 'vehicle_angular_velocity');
@@ -132,7 +127,6 @@ function flightData = loadULog(logFile)
     parameterTable = readOptionalParameters(ulog);
 
 
-    %% Validate extracted fields
 
     validateTopicFields(attitudeMessages, {'q'}, 'vehicle_attitude');
     validateTopicFields(positionMessages, ...
@@ -190,7 +184,6 @@ function flightData = loadULog(logFile)
     end
 
 
-    %% Create MATLAB-native flight data
 
     [~, fileName, extension] = fileparts(logFile);
 

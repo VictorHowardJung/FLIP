@@ -1,3 +1,4 @@
+# Include application source and selected user documentation.
 *
 !/.gitignore
 !/.gitattributes
@@ -10,5 +11,6 @@
 !/src/**/*.m
 !/docs/
 !/docs/PERFORMANCE_METRICS_SPEC.md
+!/docs/CONTROL_RESPONSE_METRICS.md
 !/docs/DIAGNOSTIC_PLOT_VALIDATION.md
 !/docs/FLIGHT_RECONSTRUCTION_DESIGN.md

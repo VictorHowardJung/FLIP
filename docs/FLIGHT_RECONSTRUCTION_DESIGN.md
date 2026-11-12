@@ -137,17 +137,18 @@ Old images do not accumulate in a display queue.
 | `flipReplayPoseSource`, `flipReplayFrameSink` | Pose delivery and RGB/time delivery |
 | `createSynchronizedReplayViews` | Shared-time trajectory and camera display |
 | `fitReplayCameraIntrinsics` | Field-of-view and flight-envelope framing |
-| `models/FLIP_UnrealReplay.slx` | Standalone model generated on first use |
+| `models/FLIP_UnrealReplay.slx` | Generated standalone model |
 | `results/exports/FLIP_SynchronizedReplay.slx` | Generated synchronized camera model |
 
-Models are generated from source when replay first opens. Generate the standalone model explicitly with:
+Both models are generated from the MATLAB source when needed. Generated
+models are kept locally. To create the standalone model explicitly:
 
 ```matlab
 setup;
 buildSimulinkUnrealReplayModel;
 ```
 
-## Interpretation and verification
+## Interpretation
 
 The Airport scene is illustrative and the origin is derived from logged
 position. Logged estimator pose is not external ground truth. Static review
@@ -155,5 +156,5 @@ plots use NED, while reconstruction uses the fixed operator frame described
 above. Interval analysis operates in its own MATLAB selector rather than
 through a reconstruction Mark In/Out workflow.
 
-Frame rate and startup time depend
-on the machine, scene, graphics profile, and other active graphics windows.
+Frame rate and startup time depend on the machine, scene, graphics profile,
+and other active graphics windows.

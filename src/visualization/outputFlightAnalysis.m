@@ -23,6 +23,17 @@ function [figureHandles, savedFiles, combinedPdfFile] = outputFlightAnalysis( ..
     [~, savedFiles, combinedPdfFile] = saveInteractiveFlightFigures( ...
         figureHandles, logFile, outputDirectory, CreateRunDirectory=false, ...
         ProgressFcn=options.ProgressFcn);
+    if isfield(analysisResult, 'controlResponse')
+        response = analysisResult.controlResponse;
+        if response.responseMode == "selected"
+            responseFile = fullfile(outputDirectory, 'interval_tracking_metrics.csv');
+            writetable(response.trackingSummary, responseFile);
+        else
+            responseFile = fullfile(outputDirectory, 'control_response_metrics.csv');
+            writetable(response.summary, responseFile);
+        end
+        fprintf('Interval metrics saved:\n%s\n', responseFile);
+    end
     fprintf('Saved %d interactive FIG files.\nOutput directory:\n%s\n', ...
         numel(savedFiles), outputDirectory);
     clear cleanup;

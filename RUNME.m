@@ -6,8 +6,6 @@ close all;
 
 setup;
 
-%% Main menu
-
 fprintf('\n');
 fprintf('====================================\n');
 fprintf('                FLIP                \n');
